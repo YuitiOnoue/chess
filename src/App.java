@@ -39,7 +39,7 @@ public class App {
     }
 
     public static void board() {
-        BoardModel board = BoardFactory.createEmptyBoard();
+        BoardModel board = BoardFactory.createTestBoard();
 
         System.out.println(BoardDrawer.drawBoard(board));
     }

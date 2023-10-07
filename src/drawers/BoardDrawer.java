@@ -3,7 +3,7 @@ package drawers;
 import static constants.ChessConstants.*;
 
 import models.BoardModel;
-import models.CellModel;
+import models.SquareModel;
 
 public class BoardDrawer {
 
@@ -13,10 +13,10 @@ public class BoardDrawer {
             throw new IllegalArgumentException("board must no be null");
         }
 
-        CellModel cells[][] = board.getCells();
+        SquareModel squares[][] = board.getSquares();
 
-        if (cells == null) {
-            throw new IllegalArgumentException("board not instancied");
+        if (squares == null) {
+            throw new IllegalArgumentException("board squares not instancied");
         }
 
         StringBuilder sb = new StringBuilder();
@@ -29,8 +29,8 @@ public class BoardDrawer {
             for (int c = 0; c < BOARD_SIZE; c++) {
 
                 sb.append("|");
-                if (cells[r][c] != null) {
-                    sb.append(cells[r][c].toString());
+                if (squares[r][c] != null) {
+                    sb.append(squares[r][c].toString());
                 }
             }
             sb.append("|");
