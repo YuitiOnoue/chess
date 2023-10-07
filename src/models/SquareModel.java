@@ -32,7 +32,17 @@ public class SquareModel {
     }
 
     public void setPiece(PieceInterface piece) {
-        this.piece = piece;
+        if (this.piece == null) {
+            this.piece = piece;
+        }
+        else if (this.piece != piece) {
+            // TODO create a new Exception
+            throw new RuntimeException("Invalid set piece");
+        }
+        else if (this.piece == piece) {
+            // TODO create a new Exception
+            throw new RuntimeException("Piece already setted");
+        }
     }
 
     public String toString() {

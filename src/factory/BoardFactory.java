@@ -1,7 +1,9 @@
 package factory;
 
 import models.BoardModel;
+import models.ColorEnum;
 import models.SquareModel;
+import models.pieces.PawnModel;
 import models.FileEnum;
 
 import static constants.ChessConstants.BOARD_SIZE;
@@ -19,6 +21,16 @@ public class BoardFactory {
         }
 
         return new BoardModel(squares);
+    }
+
+    public static BoardModel createTestBoard() {
+
+        BoardModel board = createEmptyBoard();
+        SquareModel squares[][] = board.getSquares();
+
+        new PawnModel(ColorEnum.BLACK, squares[0][0]);
+
+        return board;
     }
 
 }

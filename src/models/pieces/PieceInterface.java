@@ -7,6 +7,4 @@ public interface PieceInterface {
 
     boolean canMove(PieceModel piece, SquareModel destiny, BoardModel board);
 
-    String toString();
-
 }
