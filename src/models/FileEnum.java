@@ -1,6 +1,6 @@
 package models;
 
-public enum ColumnEnum {
+public enum FileEnum {
     
     A,
     B,

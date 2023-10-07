@@ -2,14 +2,14 @@ package models;
 
 public class BoardModel {
 
-    private CellModel[][] cells;
+    private SquareModel[][] squares;
 
-    public BoardModel(CellModel[][] cells) {
-        this.cells = cells;
+    public BoardModel(SquareModel[][] squares) {
+        this.squares = squares;
     }
 
-    public CellModel[][] getCells() {
-        return this.cells;
+    public SquareModel[][] getSquares() {
+        return this.squares;
     }
     
 }
