@@ -1,20 +1,20 @@
 package models;
 
-public class CellModel {
+import constants.ChessConstants;
 
-    private static final String EMPTY_CELL = "  ";
+public class CellModel {
 
     int row;
     ColumnEnum column;
     PieceInterface piece;
 
-    public CellModel (int row, ColumnEnum column, PieceInterface piece) {
+    public CellModel(int row, ColumnEnum column, PieceInterface piece) {
         this.row = row;
         this.column = column;
         this.piece = piece;
     }
 
-    public CellModel (int row, ColumnEnum column) {
+    public CellModel(int row, ColumnEnum column) {
         this(row, column, null);
     }
 
@@ -36,7 +36,7 @@ public class CellModel {
 
     public String toString() {
         if (piece == null || piece.isEmpty()) {
-            return EMPTY_CELL;
+            return ChessConstants.EMPTY_CELL;
         }
         return piece.toString();
     }
