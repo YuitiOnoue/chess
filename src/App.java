@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import drawers.BoardDrawer;
+import exceptions.ChessException;
 import factory.BoardFactory;
 import models.BoardModel;
 
@@ -9,7 +10,7 @@ public class App {
         menu();
     }
 
-    public static void menu() {
+    public static void menu() throws ChessException {
 
         try (Scanner in = new Scanner(System.in)) {
             String comando;
@@ -38,7 +39,7 @@ public class App {
         System.out.flush();
     }
 
-    public static void board() {
+    public static void board() throws ChessException {
         BoardModel board = BoardFactory.createTestBoard();
 
         System.out.println(BoardDrawer.drawBoard(board));
