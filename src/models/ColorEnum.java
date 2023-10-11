@@ -15,5 +15,5 @@ public enum ColorEnum {
     public String toString() {
         return this.code;
     }
-    
+
 }
