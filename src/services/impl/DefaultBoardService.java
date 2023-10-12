@@ -38,8 +38,10 @@ public class DefaultBoardService implements BoardService {
         for (int rank = 0; rank < ChessConstants.BOARD_SIZE; rank++) {
             for (int file = 0; file < ChessConstants.BOARD_SIZE; file++) {
                 //if (board.getSquare(rank, file).getPiece().getClass().equals(pieceClass)) {
-                if (pieceClass.isInstance(board.getSquare(rank, file).getPiece())) {
-                    piecesFound.add(board.getSquare(rank, file).getPiece());
+                PieceModel piece = board.getPiece(rank, file);
+                
+                if (pieceClass.isInstance(piece) && piece.getColor().equals(color)) {
+                    piecesFound.add(piece);
                 }
             }
         }

@@ -62,11 +62,7 @@ public class AlgebricNotationParser implements Parser {
         return move.getPiece().canMove(move.getTargetSquare());
     }
 
-    private boolean isEmptyMove(String moveString) {
-        return moveString == null || moveString.isBlank();
-    }
-
-    private Class<? extends PieceModel> getPieceClass(String pieceLetter) throws ParseMoveException {
+    public Class<? extends PieceModel> getPieceClass(String pieceLetter) throws ParseMoveException {
 
         if (pieceLetter.matches(ChessConstants.FILES_REGEX)) {
             return PawnModel.class;
@@ -75,4 +71,7 @@ public class AlgebricNotationParser implements Parser {
         throw new InvalidPieceException("Not a valid piece");
     }
 
+    private boolean isEmptyMove(String moveString) {
+        return moveString == null || moveString.isBlank();
+    }
 }

@@ -42,4 +42,12 @@ public abstract class PieceModel implements Piece {
         return this.square;
     }
 
+    public boolean isBlack() {
+        return ColorEnum.BLACK.equals(this.getColor());
+    }
+
+        public boolean isWhite() {
+        return ColorEnum.WHITE.equals(this.getColor());
+    }
+
 }
