@@ -1,36 +1,33 @@
 package drawers;
 
-import static constants.ChessConstants.*;
+import static constants.ChessConstants.BOARD_SIZE;
+import static constants.ChessConstants.CELL_SIZE;
 
+import exceptions.ChessException;
 import models.BoardModel;
-import models.SquareModel;
+import services.BoardService;
+import services.impl.DefaultBoardService;
 
 public class BoardDrawer {
 
-    public static String drawBoard(BoardModel board) {
+    public static String drawBoard(BoardModel board) throws ChessException {
+        
+        BoardService boardService = new DefaultBoardService();
 
-        if (board == null) {
-            throw new IllegalArgumentException("board must no be null");
-        }
-
-        SquareModel squares[][] = board.getSquares();
-
-        if (squares == null) {
-            throw new IllegalArgumentException("board squares not instancied");
-        }
+        boardService.validateBoard(board);
 
         StringBuilder sb = new StringBuilder();
 
-        for (int r = 0; r < BOARD_SIZE; r++) {
+        for (int rank = BOARD_SIZE -1; rank >= 0 ; rank--) {
 
             sb.append(drawHorizontalLine());
             sb.append(System.lineSeparator());
 
-            for (int c = 0; c < BOARD_SIZE; c++) {
+            for (int file = 0; file < BOARD_SIZE; file++) {
 
                 sb.append("|");
-                if (squares[r][c] != null) {
-                    sb.append(squares[r][c].toString());
+                if (board.getSquare(rank, file) != null) {
+                    sb.append(board.getSquare(rank, file).getPieceCode());
                 }
             }
             sb.append("|");

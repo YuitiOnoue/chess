@@ -1,15 +1,15 @@
 package models;
 
 import constants.ChessConstants;
-import models.pieces.PieceInterface;
+import models.pieces.PieceModel;
 
 public class SquareModel {
 
     int rank;
     FileEnum file;
-    PieceInterface piece;
+    PieceModel piece;
 
-    public SquareModel(int rank, FileEnum file, PieceInterface piece) {
+    public SquareModel(int rank, FileEnum file, PieceModel piece) {
         this.rank = rank;
         this.file = file;
         this.piece = piece;
@@ -27,25 +27,27 @@ public class SquareModel {
         return file;
     }
 
-    public PieceInterface getPiece() {
+    public PieceModel getPiece() {
         return piece;
     }
 
-    public void setPiece(PieceInterface piece) {
+    public void setPiece(PieceModel piece) {
         if (this.piece == null) {
             this.piece = piece;
-        }
-        else if (this.piece != piece) {
+        } else if (this.piece != piece) {
             // TODO create a new Exception
             throw new RuntimeException("Invalid set piece");
-        }
-        else if (this.piece == piece) {
+        } else if (this.piece == piece) {
             // TODO create a new Exception
             throw new RuntimeException("Piece already setted");
         }
     }
 
-    public String toString() {
+    public String getSquareName() {
+        return file.toString() + rank;
+    }
+
+    public String getPieceCode() {
         if (piece == null) {
             return ChessConstants.EMPTY_CELL;
         }

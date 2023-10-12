@@ -1,7 +1,7 @@
 package models;
 
 public enum FileEnum {
-    
+
     A,
     B,
     C,

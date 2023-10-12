@@ -1,12 +1,17 @@
 package models.pieces;
 
-import models.SquareModel;
 import models.ColorEnum;
+import models.SquareModel;
 
-public abstract class PieceModel implements PieceInterface {
+public abstract class PieceModel implements Piece {
 
     private ColorEnum color;
     private SquareModel square;
+
+    public PieceModel(ColorEnum color) {
+        this.color = color;
+        this.setSquare(square);
+    }
 
     public PieceModel(ColorEnum color, SquareModel square) {
         this.color = color;
@@ -19,15 +24,15 @@ public abstract class PieceModel implements PieceInterface {
 
     public void setSquare(SquareModel square) {
         this.square = square;
-        
-        if (square.getPiece() == null) {
+
+        if (square == null) {
+            return;
+        } else if (square.getPiece() == null) {
             square.setPiece(this);
-        }
-        else if (square.getPiece() != this) {
+        } else if (square.getPiece() != this) {
             // TODO create a new Exception
             throw new RuntimeException("Invalid set to piece");
-        }
-        else if (square.getPiece() == this) {
+        } else if (square.getPiece() == this) {
             // TODO create a new Exception
             throw new RuntimeException("Piece already setted");
         }
@@ -35,6 +40,14 @@ public abstract class PieceModel implements PieceInterface {
 
     public SquareModel getSquare() {
         return this.square;
+    }
+
+    public boolean isBlack() {
+        return ColorEnum.BLACK.equals(this.getColor());
+    }
+
+        public boolean isWhite() {
+        return ColorEnum.WHITE.equals(this.getColor());
     }
 
 }
