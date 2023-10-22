@@ -1,5 +1,6 @@
 package models.pieces;
 
+import exceptions.ChessException;
 import models.ColorEnum;
 import models.SquareModel;
 
@@ -10,10 +11,9 @@ public abstract class PieceModel implements Piece {
 
     public PieceModel(ColorEnum color) {
         this.color = color;
-        this.setSquare(square);
     }
 
-    public PieceModel(ColorEnum color, SquareModel square) {
+    public PieceModel(ColorEnum color, SquareModel square) throws ChessException {
         this.color = color;
         this.setSquare(square);
     }
@@ -22,7 +22,7 @@ public abstract class PieceModel implements Piece {
         return this.color;
     }
 
-    public void setSquare(SquareModel square) {
+    public void setSquare(SquareModel square) throws ChessException {
         this.square = square;
 
         if (square == null) {
@@ -31,11 +31,22 @@ public abstract class PieceModel implements Piece {
             square.setPiece(this);
         } else if (square.getPiece() != this) {
             // TODO create a new Exception
-            throw new RuntimeException("Invalid set to piece");
+            throw new ChessException("Invalid set to piece");
         } else if (square.getPiece() == this) {
             // TODO create a new Exception
-            throw new RuntimeException("Piece already setted");
+            throw new ChessException("Piece already setted");
         }
+    }
+
+    @Override
+    public void move(SquareModel targetSquare) throws ChessException {
+
+        if (canMove(targetSquare)) {
+            this.setSquare(targetSquare);
+            return;
+        }
+
+        throw new ChessException("Invalid move");
     }
 
     public SquareModel getSquare() {
@@ -46,7 +57,7 @@ public abstract class PieceModel implements Piece {
         return ColorEnum.BLACK.equals(this.getColor());
     }
 
-        public boolean isWhite() {
+    public boolean isWhite() {
         return ColorEnum.WHITE.equals(this.getColor());
     }
 

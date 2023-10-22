@@ -7,7 +7,7 @@ public interface Piece {
 
     boolean canMove(SquareModel targetSquare);
 
-    boolean canCapture(SquareModel targeSquareModel);
+    boolean canCapture(SquareModel targetSquare);
 
     void move(SquareModel targetSquare) throws ChessException;
 

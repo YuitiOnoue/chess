@@ -10,7 +10,7 @@ public class PawnModel extends PieceModel {
         super(color);
     }
 
-    public PawnModel(ColorEnum color, SquareModel square) {
+    public PawnModel(ColorEnum color, SquareModel square) throws ChessException {
         super(color, square);
     }
 
@@ -61,19 +61,10 @@ public class PawnModel extends PieceModel {
 
         boolean isAdjancentFile = Math.abs(sourceFileIndex - targetFileIndex) == 1;
         boolean isInMoveRange = (sourceRank - targetRank) == orientation;
-        boolean hasEnemyPiece = targetSquare.getPiece() != null && !(targetSquare.getPiece().getColor().equals(this.getColor()));
+        boolean hasEnemyPiece = targetSquare.getPiece() != null
+                && !(targetSquare.getPiece().getColor().equals(this.getColor()));
 
         return isAdjancentFile && isInMoveRange && hasEnemyPiece;
-    }
-
-    @Override
-    public void move(SquareModel targetSquare) throws ChessException {
-
-        if (canMove(targetSquare)) {
-            this.setSquare(targetSquare);
-        }
-
-        throw new ChessException("Invalid move");
     }
 
     @Override

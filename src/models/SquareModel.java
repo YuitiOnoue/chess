@@ -1,6 +1,7 @@
 package models;
 
 import constants.ChessConstants;
+import exceptions.ChessException;
 import models.pieces.PieceModel;
 
 public class SquareModel {
@@ -41,6 +42,15 @@ public class SquareModel {
             // TODO create a new Exception
             throw new RuntimeException("Piece already setted");
         }
+    }
+
+    public void removePiece() throws ChessException {
+
+        if (this.piece != null && this.piece.getSquare().equals(this)) {
+            this.piece.setSquare(null);
+        }
+
+        this.piece = null;
     }
 
     public String getSquareName() {

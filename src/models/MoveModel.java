@@ -1,5 +1,6 @@
 package models;
 
+import exceptions.ChessException;
 import models.pieces.PieceModel;
 
 public class MoveModel {
@@ -24,6 +25,11 @@ public class MoveModel {
         this.piece = piece;
         this.sourceSquare = piece.getSquare();
         this.targetSquare = targetSquare;
+    }
+
+    public void execute() throws ChessException {
+        getPiece().move(targetSquare);
+        sourceSquare.removePiece();
     }
 
     public int getRound() {

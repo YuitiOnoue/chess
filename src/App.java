@@ -10,6 +10,7 @@ import models.MoveModel;
 import parsers.AlgebricNotationParser;
 
 public class App {
+    
     public static void main(String[] args) throws Exception {
         menu();
     }
@@ -25,7 +26,6 @@ public class App {
             int playCounter = 1;
             int round = 1;
 
-
             do {
                 drawBoard(board);
                 System.out.println("Turn " + round + ": " + turnColor);
@@ -39,6 +39,7 @@ public class App {
                     try {
 
                         MoveModel move = parser.parse(comando, board, turnColor, round);
+                        move.execute();
                         turnColor = ColorEnum.WHITE.equals(turnColor) ? ColorEnum.BLACK : ColorEnum.WHITE;
                         playCounter++;
                         round = (playCounter % 2 == 1) ? round + 1 : round;
